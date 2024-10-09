@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다른 단어 찾기 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #gameContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 140px);
+            grid-gap: 20px;
+        }
+        #gameContainer div {
+            font-weight: bold;
+            font-size: 24px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>다른 단어 찾기 게임</h1>
+    <p>스펠링이 한 글자 다른 단어를 선택하세요:</p>
+    <div id="gameContainer"></div>
+    <script src="game.js"></script>
+</body>
+</html>
