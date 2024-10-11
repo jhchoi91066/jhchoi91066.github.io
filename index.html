@@ -6,31 +6,47 @@
     <title>다른 단어 찾기 게임</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #e0f7fa; /* 부드러운 파란색 배경 */
+            color: #333; /* 텍스트 색상 */
         }
         h1 {
+            margin-bottom: 10px;
+            font-size: 28px; /* 제목 크기 조정 */
+            color: #00796b; /* 제목 색상 */
+        }
+        p {
+            font-size: 18px; /* 설명 텍스트 크기 조정 */
             margin-bottom: 20px;
         }
         #gameContainer {
             display: grid;
-            grid-template-columns: repeat(3, 140px);
-            grid-gap: 20px;
+            grid-template-columns: repeat(3, 100px); /* 모바일에 맞게 크기 조정 */
+            grid-gap: 15px; /* 박스 간의 간격 추가 */
+            padding: 20px; /* 게임 컨테이너 내부 여백 추가 */
         }
         #gameContainer div {
             font-weight: bold;
-            font-size: 24px;
-            width: 120px;
-            height: 120px;
+            font-size: 20px; /* 단어 크기 조정 */
+            width: 100px; /* 단어 블록 크기 조정 */
+            height: 100px; /* 단어 블록 크기 조정 */
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #ffffff; /* 단어 블록 배경색 */
+            border: 2px solid #00796b; /* 테두리 색상 */
+            border-radius: 10px; /* 모서리 둥글게 */
+            transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+            cursor: pointer; /* 커서 포인터로 변경 */
+        }
+        #gameContainer div:hover {
+            background-color: #b2dfdb; /* 호버 시 배경색 변화 */
         }
     </style>
 </head>
