@@ -1,5 +1,7 @@
+let currentRound = 1; // 현재 라운드 수
+
 function createWordList() {
-    const baseWords = ["apple", "grape", "peach", "mango", "berry", "lemon", "melon", "plum", "pear","banana"];
+    const baseWords = ["apple", "grape", "peach", "mango", "berry", "lemon", "melon", "plum", "pear", "banana"];
     const baseWord = baseWords[Math.floor(Math.random() * baseWords.length)];
     const similarWords = Array(8).fill(baseWord);
     let differentWord = baseWord.split("");
@@ -37,12 +39,30 @@ function playGame() {
     } else {
         gameContainer.innerHTML = "";
     }
-    
+
+    // 라운드 수 표시
+    const roundDisplay = document.getElementById('roundDisplay');
+    if (!roundDisplay) {
+        const newRoundDisplay = document.createElement('div');
+        newRoundDisplay.id = 'roundDisplay';
+        newRoundDisplay.style.fontSize = '20px';
+        newRoundDisplay.style.marginBottom = '20px';
+        document.body.insertBefore(newRoundDisplay, gameContainer);
+    }
+    document.getElementById('roundDisplay').textContent = `현재 라운드: ${currentRound}`;
+
+    // 재도전 버튼 초기화
+    const retryButton = document.getElementById('retryButton');
+    if (retryButton) {
+        retryButton.remove();
+    }
+
     let timeoutReached = false;
     const timer = setTimeout(() => {
         timeoutReached = true;
         alert("시간이 초과되었습니다! 2초 내에 답을 선택해야 합니다.");
         highlightCorrectAnswer();
+        showRetryButton(); // 재도전 버튼 표시
     }, 2000);
 
     words.forEach((word) => {
@@ -65,6 +85,7 @@ function playGame() {
             } else {
                 alert(`틀렸습니다. 정답은 '${differentWord}'이었습니다.`);
                 highlightCorrectAnswer();
+                showRetryButton(); // 재도전 버튼 표시
             }
         });
         
@@ -80,7 +101,24 @@ function playGame() {
     }
 
     function nextRound() {
+        currentRound++; // 라운드 수 증가
         playGame();
+    }
+
+    function showRetryButton() {
+        const retryButton = document.createElement('button');
+        retryButton.id = 'retryButton';
+        retryButton.textContent = '재도전';
+        retryButton.style.marginTop = '20px';
+        retryButton.style.padding = '10px 20px';
+        retryButton.style.fontSize = '16px';
+        
+        retryButton.addEventListener('click', () => {
+            currentRound = 1; // 라운드 수 초기화
+            playGame(); // 게임 재시작
+        });
+
+        document.body.appendChild(retryButton);
     }
 }
 
